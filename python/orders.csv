@@ -1,0 +1,9 @@
+order_id,customer_id,product,units,price,region,order_date,line_total
+1,C001,Pen,2,50,North,2026-09-01,100
+2,C002,Notebook,5,120,South,2026-09-02,600
+3,C003,Pencil,2,20,East,2026-09-03,40
+4,C004,Pen,4,50,West,2026-09-04,200
+5,C005,Notebook,2,110,North,2026-09-05,220
+6,C001,Marker,3,80,East,2026-09-06,240
+7,C002,Pen,2,50,West,2026-09-07,100
+8,C003,Notebook,5,120,South,2026-09-08,600
