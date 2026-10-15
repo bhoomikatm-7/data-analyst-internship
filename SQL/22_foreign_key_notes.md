@@ -1,0 +1,1 @@
+ERROR 1452 (23000): Cannot add or update a child row: a foreign key constraint fails (`intern_ecommerce`.`orders`, CONSTRAINT `fk_orders_customer` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`customer_id`))
