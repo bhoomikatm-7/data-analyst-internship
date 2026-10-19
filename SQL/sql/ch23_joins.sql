@@ -103,3 +103,90 @@ FROM products_j p
 LEFT JOIN items_j i
     ON p.product_id = i.product_id
 WHERE i.item_id IS NULL;
+
+USE intern_joins;
+
+-- 3. RIGHT JOIN: Show all orders, including those without matching customers
+SELECT
+    c.customer_id,
+    c.customer_name,
+    o.order_id,
+    o.amount
+FROM customers_j c
+RIGHT JOIN orders_j o
+    ON c.customer_id = o.customer_id;
+
+    USE intern_joins;
+
+-- 4. SELF JOIN: Find an employee, manager, and grand-manager
+SELECT
+    e.staff_name AS emp,
+    m.staff_name AS mgr,
+    gm.staff_name AS grand_mgr
+FROM staff_j e
+JOIN staff_j m
+    ON e.manager_id = m.staff_id
+JOIN staff_j gm
+    ON m.manager_id = gm.staff_id
+WHERE e.staff_name = 'Chetan';
+
+USE intern_joins;
+
+-- 5. Find products that have never been sold
+SELECT
+    p.product_id,
+    p.product_name,
+    p.category
+FROM products_j p
+LEFT JOIN items_j i
+    ON p.product_id = i.product_id
+WHERE i.item_id IS NULL;
+
+USE intern_joins;
+
+-- 6. Find customers who bought a Mouse
+SELECT DISTINCT
+    c.customer_name,
+    p.product_name
+FROM customers_j c
+INNER JOIN orders_j o
+    ON c.customer_id = o.customer_id
+INNER JOIN items_j i
+    ON o.order_id = i.order_id
+INNER JOIN products_j p
+    ON i.product_id = p.product_id
+WHERE p.product_name = 'Mouse';
+
+USE intern_joins;
+
+-- 7. Find orders without a matching customer
+SELECT
+    o.order_id,
+    o.customer_id,
+    o.amount
+FROM orders_j o
+LEFT JOIN customers_j c
+    ON o.customer_id = c.customer_id
+WHERE c.customer_id IS NULL;
+
+USE intern_joins;
+
+-- 8. FULL OUTER JOIN emulation: include unmatched customers and orders
+SELECT
+    c.customer_name,
+    o.order_id,
+    o.amount
+FROM customers_j c
+LEFT JOIN orders_j o
+    ON c.customer_id = o.customer_id
+
+UNION
+
+SELECT
+    c.customer_name,
+    o.order_id,
+    o.amount
+FROM customers_j c
+RIGHT JOIN orders_j o
+    ON c.customer_id = o.customer_id
+ORDER BY order_id;

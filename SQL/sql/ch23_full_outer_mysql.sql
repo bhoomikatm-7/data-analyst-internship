@@ -32,3 +32,27 @@ FROM customers_j c
 LEFT JOIN orders_j o
     ON c.customer_id = o.customer_id
 WHERE o.order_id IS NULL;
+
+USE intern_joins;
+
+-- 1. INNER JOIN: Match customers with their orders
+SELECT
+    c.customer_id,
+    c.customer_name,
+    o.order_id,
+    o.amount
+FROM customers_j c
+INNER JOIN orders_j o
+    ON c.customer_id = o.customer_id;
+
+    USE intern_joins;
+
+-- 2. LEFT JOIN: Show all customers, including those without orders
+SELECT
+    c.customer_id,
+    c.customer_name,
+    o.order_id,
+    o.amount
+FROM customers_j c
+LEFT JOIN orders_j o
+    ON c.customer_id = o.customer_id;
